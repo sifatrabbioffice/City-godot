@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player_script"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_standing"]
+height = 1.8
+radius = 0.35
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_crouch"]
+height = 1.1
+radius = 0.35
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spring"]
+height = 0.2
+radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="Mat_body"]
+albedo_color = Color(0.15, 0.18, 0.28)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="Mat_head"]
+albedo_color = Color(0.85, 0.72, 0.58)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Mat_jacket"]
+albedo_color = Color(0.2, 0.22, 0.32)
+roughness = 0.75
+
+; Player: CharacterBody3D root with full third-person setup
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_player_script")
+collision_layer = 1
+collision_mask = 1
+
+; Main capsule collision (standing)
+[node name="StandingShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_standing")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+
+; Crouch capsule collision
+[node name="CrouchShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_crouch")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+disabled = true
+
+; Body geometry (torso)
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
+mesh = BoxMesh()
+
+; Head geometry
+[node name="HeadMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+mesh = SphereMesh()
+
+; Spring arm — rotated independently for camera (detached Y rotation)
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.0, 0)
+spring_length = 8.0
+rotation = Vector3(-0.35, 0, 0)
+collision_mask = 1
+margin = 0.3
+
+; Camera at end of spring arm
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+fov = 70.0
+near = 0.2
+far = 3000.0
