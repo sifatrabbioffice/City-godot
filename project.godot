@@ -1,0 +1,140 @@
+; Engine configuration file — Massive City (GTA5/RDR2 Scale)
+; Godot 4.5 — Jolt Physics — Vulkan Forward+
+config_version=5
+
+[application]
+
+config/name="Massive City"
+config/description="GTA5/RDR2-scale procedural open world"
+run/main_scene="res://world.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+
+[input]
+
+move_left={
+"deadzone": 0.15,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":65,"script":null),
+Object(InputEventKey,"device":-1,"physical_keycode":4194319,"script":null),
+Object(InputEventJoypadMotion,"device":-1,"axis":0,"axis_value":-1.0,"script":null)
+]
+}
+move_right={
+"deadzone": 0.15,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":68,"script":null),
+Object(InputEventKey,"device":-1,"physical_keycode":4194321,"script":null),
+Object(InputEventJoypadMotion,"device":-1,"axis":0,"axis_value":1.0,"script":null)
+]
+}
+move_forward={
+"deadzone": 0.15,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":87,"script":null),
+Object(InputEventKey,"device":-1,"physical_keycode":4194320,"script":null),
+Object(InputEventJoypadMotion,"device":-1,"axis":1,"axis_value":-1.0,"script":null)
+]
+}
+move_back={
+"deadzone": 0.15,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":83,"script":null),
+Object(InputEventKey,"device":-1,"physical_keycode":4194322,"script":null),
+Object(InputEventJoypadMotion,"device":-1,"axis":1,"axis_value":1.0,"script":null)
+]
+}
+jump={
+"deadzone": 0.2,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":32,"script":null),
+Object(InputEventJoypadButton,"device":-1,"button_index":0,"script":null)
+]
+}
+sprint={
+"deadzone": 0.2,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":4194325,"script":null),
+Object(InputEventJoypadButton,"device":-1,"button_index":8,"script":null)
+]
+}
+crouch={
+"deadzone": 0.2,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":67,"script":null),
+Object(InputEventJoypadButton,"device":-1,"button_index":9,"script":null)
+]
+}
+look_left={
+"deadzone": 0.15,
+"events": [
+Object(InputEventJoypadMotion,"device":-1,"axis":2,"axis_value":-1.0,"script":null)
+]
+}
+look_right={
+"deadzone": 0.15,
+"events": [
+Object(InputEventJoypadMotion,"device":-1,"axis":2,"axis_value":1.0,"script":null)
+]
+}
+look_up={
+"deadzone": 0.15,
+"events": [
+Object(InputEventJoypadMotion,"device":-1,"axis":3,"axis_value":-1.0,"script":null)
+]
+}
+look_down={
+"deadzone": 0.15,
+"events": [
+Object(InputEventJoypadMotion,"device":-1,"axis":3,"axis_value":1.0,"script":null)
+]
+}
+zoom_in={
+"deadzone": 0.2,
+"events": [
+Object(InputEventMouseButton,"device":-1,"button_index":4,"script":null)
+]
+}
+zoom_out={
+"deadzone": 0.2,
+"events": [
+Object(InputEventMouseButton,"device":-1,"button_index":5,"script":null)
+]
+}
+toggle_minimap={
+"deadzone": 0.2,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":77,"script":null),
+Object(InputEventJoypadButton,"device":-1,"button_index":11,"script":null)
+]
+}
+toggle_run={
+"deadzone": 0.2,
+"events": [
+Object(InputEventKey,"device":-1,"physical_keycode":4194326,"script":null)
+]
+}
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+3d/default_gravity=20.0
+3d/sleep_threshold_linear=0.1
+
+[rendering]
+
+renderer/rendering_method="forward_plus"
+renderer/rendering_method.mobile="mobile"
+anti_aliasing/quality/msaa_3d=2
+lights_and_shadows/directional_shadow/size=4096
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+environment/ssao_quality=2
+environment/ssil_quality=1
+textures/vram_compression/import_etc2_astc=true
+global_illumination/gi/use_half_resolution=true
